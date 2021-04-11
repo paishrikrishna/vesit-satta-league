@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style type="text/css">
+        body {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .main {
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 500px;
+        margin: 7em auto;
+        margin-left: 20px;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        display: inline-block;
+    }
+    .add_match {
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 500px;
+        margin: 7em auto;
+        margin-left: 20px;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        display: inline-block;
+    }
+    
+    .sign {
+        padding-top: 0px;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 23px;
+        border-style: solid;border-width: 1px;padding: 10px;width: 200px;
+        background-color: #F3EBF6;
+        transition: 1s;
+    }
+
+    .sign:hover{
+        cursor: pointer;
+        background-color: #8C55AA;
+        color: #F3EBF6;
+    }
+    
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+
+  </style>
+  <title>Vesit Satta League 2021</title>
+    
+</head>
+
+<body>
+    <div>
+        <form action="../" method="POST">{% csrf_token %}
+            <p><input type="submit" name="LOGOUT" class="sign" align="center" value="LOGOUT"><font style="float: right;color: #8C55AA;font-family: 'Ubuntu', sans-serif;font-weight: bold;font-size: 23px;">Welcome {{ username }}</font></p>    
+        </form>
+        
+    </div>
+    <div align="center">
+        <div class="main">
+            <p align="center" style="font-size: 60px;"><b>Predictions</b></p>
+            <p align="center" style="font-size: 30px;">Select on team name for the respective match and press submit</p>
+            <a href="../predict/" align="center" class="sign" style="text-decoration: none;">Predict</a>
+        </div>
+        <div class="main">
+            <p align="center" style="font-size: 60px;"><b>Scoreboard</b></p>
+            <p align="center" style="font-size: 30px;">Your rank {{ rank }}</p>
+            <p align="center" style="font-size: 30px;">Your points {{ points }}</p>    
+            <a href="../scoreboard/" align="center" class="sign" style="text-decoration: none;">Full Board</a>        
+        </div>
+        <div class="add_match">
+            <p align="center" style="font-size: 60px;"><b>Add a Match</b></p>
+            <p align="center" style="font-size: 30px;">Select two team name and deadline for prediction and press submit</p>   
+            <a href="../add_match/" align="center" class="sign" style="text-decoration: none;">Add Match</a>    
+        </div>
+    </div> 
+    {% autoescape off %}
+    <script>
+        admin_panel();
+        function admin_panel(){
+            var x =  document.getElementsByClassName("add_match")[0];
+            if("{{ username }}" != "admin"){
+                x.style.display = "none";
+
+            }
+        }
+
+
+    </script>
+    {% endautoescape %} 
+</body>
+
+</html>
+

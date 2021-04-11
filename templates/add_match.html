@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <style type="text/css">
+        body {
+        background-color: #F3EBF6;
+        font-family: 'Ubuntu', sans-serif;
+    }
+    
+    .main {
+        background-color: #FFFFFF;
+        width: 70%;
+        
+        margin: 7em auto;
+        margin-left: 20px;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        display: inline-block;
+    }
+    .add_match {
+        background-color: #FFFFFF;
+        width: 400px;
+        height: 500px;
+        margin: 7em auto;
+        margin-left: 20px;
+        border-radius: 1.5em;
+        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        display: inline-block;
+    }
+    
+    .sign {
+        padding-top: 0px;
+        color: #8C55AA;
+        font-family: 'Ubuntu', sans-serif;
+        font-weight: bold;
+        font-size: 23px;
+        border-style: solid;border-width: 1px;padding: 10px;width: 200px;
+        background-color: #F3EBF6;
+        transition: 1s;
+    }
+
+    .sign:hover{
+        cursor: pointer;
+        background-color: #8C55AA;
+        color: #F3EBF6;
+    }
+    .popup,.edit_popup,.req_popup{
+            background:rgba(0,0,0,.4);
+            cursor:pointer;
+            display:none;
+            height:100%;
+            position:fixed;
+            text-align:center;
+            top:0;
+            width:100%;
+            z-index:10000;
+        }
+        .popup .helper ,.edit_popup .helper,.req_popup .helper{
+            display:inline-block;
+            height:100%;
+            vertical-align:middle;
+
+        }
+        .popup > div , .edit_popup > div, .req_popup > div {
+            background-color: #fff;
+            box-shadow: 10px 10px 60px #555;
+            display: inline-block;
+            height: auto;
+            max-width: 551px;
+            min-height: 100px;
+            vertical-align: middle;
+            width: 60%;
+            position: relative;
+            border-radius: 8px;
+            padding: 15px 5%;
+
+        }
+        .popupCloseButton {
+            background-color: #fff;
+            border: 3px solid #999;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            font-family: arial;
+            font-weight: bold;
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 25px;
+            line-height: 30px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+        .popupCloseButton:hover {
+            background-color: #ccc;
+        }
+        .edit_popupCloseButton {
+            background-color: #fff;
+            border: 3px solid #999;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            font-family: arial;
+            font-weight: bold;
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 25px;
+            line-height: 30px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+        .edit_popupCloseButton:hover {
+            background-color: #ccc;
+        }
+        .req_popupCloseButton {
+            background-color: #fff;
+            border: 3px solid #999;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            font-family: arial;
+            font-weight: bold;
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 25px;
+            line-height: 30px;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+        .req_popupCloseButton:hover {
+            background-color: #ccc;
+        }
+        .trigger_popup_fricc {
+            cursor: pointer;
+            font-size: 20px;
+            margin: 20px;
+            display: inline-block;
+            font-weight: bold;
+        }
+    
+    @media (max-width: 600px) {
+        .main {
+            border-radius: 0px;
+        }
+
+
+  </style>
+  <title>Vesit Satta League 2021</title>
+    
+</head>
+
+<body>
+    
+    <div style="margin-top: 10px;margin-left: 10px;">
+         <a href="../" align="center" class="sign" style="text-decoration: none;">Home</a>   
+    </div>
+    <div align="center">
+        <div class="main">
+            <p align="center" style="font-size: 60px;"><b>Fixtures</b></p>
+            <p align="center" style="font-size: 30px;">Select on team name for the respective match and press submit</p>
+            <div style="display:inline-block;margin-bottom: 100px;">
+                <div id="teams">
+                    <img id="team1" alt="MI" src="https://i.pinimg.com/originals/28/09/a8/2809a841bb08827603ccac5c6aee8b33.png" width="200" height="200">
+
+                    <img src="https://i.pinimg.com/originals/9d/a6/65/9da665ca2d950bb2ac3245c58410c2be.png" width="100" height="100" style="margin-bottom: 60px;">
+                    
+                    <img id="team2" alt="RCB" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2a/Royal_Challengers_Bangalore_2020.svg/1200px-Royal_Challengers_Bangalore_2020.svg.png" width="200" height="200">
+                </div>
+
+            <p style="margin-top: 20px; font-family: 'Ubuntu', sans-serif;font-size: 30px; ">Deadline: <input type="datetime-local" id="birthdaytime" name="birthdaytime" value="2021-04-06T18:26" ></p>
+            <p align="center" class="sign" onclick="add_match()">Add Match</p>
+            </div>
+        </div>
+    </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="display:none;">
+    Open modal
+</button>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Select teams</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <table align="center">
+            <tr>
+                <td>
+                    <img class="teams" alt="RCB" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2a/Royal_Challengers_Bangalore_2020.svg/1200px-Royal_Challengers_Bangalore_2020.svg.png" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+                <td>
+                     <img class="teams" alt="MI" src="https://i.pinimg.com/originals/28/09/a8/2809a841bb08827603ccac5c6aee8b33.png" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                     <img class="teams" alt="CSK" src="https://2.bp.blogspot.com/-UV7XoEc2L_c/WH9mT8coZHI/AAAAAAAAF4U/FZKgtVEnAjYejf1H_BXTniTy1N7XkBUswCLcB/s1600/chennai-super-kings.jpg" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+                <td>
+                    <img class="teams" alt="DC" src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Delhi_Capitals_Logo.svg/1200px-Delhi_Capitals_Logo.svg.png" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+            </tr>
+
+            <TR>
+                <td>
+                    <img class="teams" alt="RR" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFeEmZ-pCo5KA96Ij4xZoeEHIJzjc8mvOH833i3sLa9PNPwB9nKBVTLYc1qoQWeQUSVv0&usqp=CAU" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+                <td>
+                    <img class="teams" alt="SRH" src="https://themayanagari.com/wp-content/uploads/2020/10/sunrisers-hyderabad-logo-png-free-download-2.jpg" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+            </TR>
+            <tr>
+                <td>
+                    <img class="teams" alt="KXIP" src="https://upload.wikimedia.org/wikipedia/en/1/1c/Punjab_Kings_logo_2021.png" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+                <td>
+                    <img class="teams" alt="KKR" src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Kolkata_Knight_Riders_Logo.svg/1200px-Kolkata_Knight_Riders_Logo.svg.png" width="200" height="200" style="margin-top: 20px;margin-right: 20px;margin-bottom: 20px">
+                </td>
+            </tr>
+        </table>
+        </div>
+        
+      </div>
+    </div>
+</div>
+<form action="../add_match/" method="POST" style="display:none;">{% csrf_token %}
+    <input type="text" name="team1" value="" readonly>
+    <input type="text" name="team2" value="" readonly>
+    <input type="text" name="deadline" value="" readonly>
+    <p><input type="submit" name="Add_match" class="sign" align="center" value="Add_match"></p>    
+</form>
+     {% autoescape off %}
+    <script>
+        
+        var team = 0;
+        var t = document.getElementsByClassName("teams");
+        for(var i=0;i<t.length;i++){
+            t[i].onclick = function(){
+                if(team == 1){   
+                    document.getElementById("team1").src = this.src;
+                    document.getElementById("team1").alt = this.alt;
+                }
+                else{
+                       
+                    document.getElementById("team2").src = this.src;
+                    document.getElementById("team2").alt = this.alt;
+                }
+
+                document.getElementsByClassName("close")[0].click();
+
+            };
+        }
+        document.getElementById("team1").onclick = function () {
+            team = 1;
+            
+            document.getElementsByClassName("btn btn-primary")[0].click();
+
+        };
+
+        document.getElementById("team2").onclick = function () {
+            team = 2;
+           
+            document.getElementsByClassName("btn btn-primary")[0].click();
+        };
+
+        function add_match(){
+
+            document.getElementsByName("team1")[0].value = document.getElementById("team1").alt;
+            document.getElementsByName("team2")[0].value = document.getElementById("team2").alt;
+            document.getElementsByName("deadline")[0].value = (document.getElementById("birthdaytime").value);
+            document.getElementsByName("Add_match")[0].click();
+     }
+
+
+        
+    </script>
+    {% endautoescape %} 
+</body>
+
+</html>
+
